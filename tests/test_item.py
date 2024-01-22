@@ -27,3 +27,5 @@ def test_apply_discount2(position):
     Item.pay_rate = 1.5
     position.apply_discount()
     assert position.price == 150
+
+def test_instantiate_from_csv():
