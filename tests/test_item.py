@@ -74,3 +74,52 @@ def test_string_to_number_with_invalid_string():
     string = "abc"
     with pytest.raises(ValueError):
         Item.string_to_number(string)
+
+
+def test_repr():
+    obj = Item('Ноутбук', 10, 5)
+    expected_result = "Item('Ноутбук', 10, 5)"
+    result = repr(obj)
+    assert result == expected_result
+
+
+def test_repr_invalid():
+    obj = Item('Ноутбук', -5, -10)
+    expected_result = "Item('Ноутбук', -5, -10)"
+    result = repr(obj)
+    assert result == expected_result
+
+
+def test_repr_empty():
+    obj = Item('', 0, 0)
+    expected_result = "Item('', 0, 0)"
+    result = repr(obj)
+    assert result == expected_result
+
+
+def test_str():
+    obj = Item('Ноутбук', 10, 5)
+    expected_result = "Ноутбук"
+    result = str(obj)
+    assert result == expected_result
+
+
+def test_str_empty_name():
+    obj = Item('', 10, 5)
+    expected_result = ""
+    result = str(obj)
+    assert result == expected_result
+
+
+def test_str_negative_price():
+    obj = Item('Ноутбук', -10, 5)
+    expected_result = "Ноутбук"
+    result = str(obj)
+    assert result == expected_result
+
+
+def test_str_zero_quantity():
+    obj = Item('Ноутбук', 10, 0)
+    expected_result = "Ноутбук"
+    result = str(obj)
+    assert result == expected_result
