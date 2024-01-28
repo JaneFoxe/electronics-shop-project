@@ -5,14 +5,14 @@ from pathlib import Path
 class Item:
     """Класс. реализующий представления товара в магазине."""
     pay_rate = 1.0
-    all = []
+    all_product = []
 
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """Метод, который инициализирует экземпляры класса."""
         self.__name = name
         self.price = price
         self.quantity = quantity
-        self.all.append(self)
+        self.all_product.append(self)
 
     def calculate_total_price(self) -> float:
         """Рассчитывает общую стоимость конкретного товара в магазине."""
@@ -33,7 +33,7 @@ class Item:
         self.__name = name
 
     @classmethod
-    def instantiate_from_csv(cls, file_path: str) -> None:
+    def instantiate_from_csv(cls) -> None:
         """
         Инициализирует экземпляры класса Item данными из CSV - файла.
         """
@@ -41,7 +41,7 @@ class Item:
         file_path = current_file_path.parent.parent / 'src/items.csv'
 
         with open(file_path, 'r', encoding='utf-8') as file:
-            cls.all.clear()
+            cls.all_product.clear()
             reader = csv.DictReader(file)
             for row in reader:
                 name = row['name']
@@ -54,8 +54,12 @@ class Item:
         number = round(float(string))
         return number
 
+#магические методы
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
     def __str__(self):
         return f"{self.__name}"
+
+    def __add__(self, other):
+        return self.quantity + other.quantity
