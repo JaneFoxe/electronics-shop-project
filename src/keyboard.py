@@ -17,6 +17,7 @@ class MixinLog:
         return self.__language
 
 
+
 class Keyboard(Item, MixinLog):
     def __init__(self, name, price, quantity, language='EN'):
         super().__init__(name, price, quantity)
