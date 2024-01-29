@@ -33,7 +33,7 @@ class Item:
         self.__name = name
 
     @classmethod
-    def instantiate_from_csv(cls) -> None:
+    def instantiate_from_csv(cls, file_path) -> None:
         """
         Инициализирует экземпляры класса Item данными из CSV - файла.
         """
