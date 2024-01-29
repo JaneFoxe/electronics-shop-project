@@ -54,7 +54,7 @@ class Item:
         number = round(float(string))
         return number
 
-#магические методы
+    # магические методы
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
