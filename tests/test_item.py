@@ -32,15 +32,15 @@ def test_apply_discount2(position):
 
 
 def test_instantiate_from_csv():
-    Item.all.clear()  # Очищаем объекты перед каждым тестом
+    Item.all_product.clear()  # Очищаем объекты перед каждым тестом
     file_path = 'test_items.csv'  # Путь к тестовому CSV-файлу
-    Item.instantiate_from_csv(file_path)
+    Item.instantiate_from_csv('file_path')
 
     # Проверяем, что список объектов класса не пустой
-    assert len(Item.all) > 0
+    assert len(Item.all_product) > 0
 
     # Проверяем, что объекты корректно инициализированы из CSV-файла
-    for item in Item.all:
+    for item in Item.all_product:
         assert isinstance(item, Item)
         assert isinstance(item.name, str)
         assert isinstance(item.price, float)
