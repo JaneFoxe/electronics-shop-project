@@ -1,8 +1,9 @@
 import csv
-from pathlib import Path
+
+
 class InstantiateCVSError(Exception):
     def __init__(self, *args, **kwargs):
-        self.message = 'Файл поврежден'
+        self.message = 'Файл item.csv поврежден'
 
     def __str__(self):
         return self.message
@@ -43,8 +44,8 @@ class Item:
         """
         Инициализирует экземпляры класса Item данными из CSV - файла.
         """
-        #current_file_path = Path(__file__)
-        #file_path = current_file_path.parent.parent / 'src/items.csv'
+        # current_file_path = Path(__file__)
+        # file_path = current_file_path.parent.parent / 'src/items.csv'
         try:
             with open(file_path, 'r', encoding='utf-8') as file:
                 cls.all_product.clear()
@@ -55,10 +56,9 @@ class Item:
                     quantity = int(row['quantity'])
                     cls(name, price, quantity)
         except FileNotFoundError:
-            raise FileNotFoundError('Отсутствует файл item.csv')
+            raise FileNotFoundError('Отсутствует файл items.csv')
         except KeyError:
-            raise InstantiateCVSError('Файл  item.csv поврежден')
-
+            raise InstantiateCVSError('Файл item.csv поврежден')
 
     @staticmethod
     def string_to_number(string):
