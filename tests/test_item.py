@@ -1,6 +1,9 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
+import os
+import tempfile
+
 import pytest
-from src.item import Item
+from src.item import Item, InstantiateCVSError
 from src.phone import Phone
 
 
@@ -33,8 +36,7 @@ def test_apply_discount2(position):
 
 def test_instantiate_from_csv():
     Item.all_product.clear()  # Очищаем объекты перед каждым тестом
-    file_path = 'test_items.csv'  # Путь к тестовому CSV-файлу
-    Item.instantiate_from_csv('file_path')
+    Item.instantiate_from_csv()
 
     # Проверяем, что список объектов класса не пустой
     assert len(Item.all_product) > 0
@@ -48,6 +50,13 @@ def test_instantiate_from_csv():
         assert item.name != ''
         assert item.price > 0
         assert item.quantity >= 0
+
+
+def test_instantiate_from_csv_none_file():
+    with pytest.raises(FileNotFoundError):
+        filename = 'item.csv'
+        Item.instantiate_from_csv(filename)
+
 
 
 def test_string_to_number_with_integer():
